@@ -60,28 +60,35 @@ const timeline = [
     year: '2020',
     title: 'Company Founded',
     description: 'MCCED was established with a vision to revolutionize global logistics.',
+    image: '/images/Company Founded.jpg',
   },
   {
     year: '2021',
     title: 'International Expansion',
     description: 'Extended our services to 20+ countries across multiple continents.',
+    image: '/images/International Expansion.jpg',
   },
   {
     year: '2022',
     title: 'Technology Integration',
     description: 'Launched our advanced tracking system and digital platform.',
+    image: '/images/Technology Integration.jpg',
   },
   {
     year: '2023',
     title: 'Sustainability Initiative',
     description: 'Implemented eco-friendly practices and carbon-neutral shipping options.',
+    image: '/images/group-of-workers-in-an-empty-container-storage-yar-2025-01-08-09-17-31-utc.jpg',
   },
   {
     year: '2024',
     title: 'Global Recognition',
     description: 'Achieved industry certifications and expanded to 50+ countries.',
+    image: '/images/Global Recognition.jpg',
   },
 ];
+
+import Image from 'next/image';
 
 export default function About() {
   const [ref, inView] = useInView({
@@ -109,7 +116,21 @@ export default function About() {
   };
 
   return (
-    <section id="about" className="py-20 bg-white dark:bg-gray-800">
+    <section id="about" className="pt-0 pb-20 bg-white dark:bg-gray-800">
+      {/* Hero Image */}
+      <div className="relative w-full h-[320px] md:h-[420px] lg:h-[520px] mb-12 overflow-hidden rounded-b-3xl shadow-lg">
+        <Image
+          src="/images/hero pic2.jpg"
+          alt="About MCCED Hero"
+          fill
+          className="object-cover object-center w-full h-full"
+          priority
+          sizes="100vw"
+          style={{ mixBlendMode: 'multiply' }}
+        />
+        {/* تدرج لوني فوق الصورة لمزيد من العمق */}
+        <div className="absolute inset-0 bg-gradient-to-t from-primary/40 via-white/60 to-transparent dark:from-gray-900/60 dark:via-gray-800/40 pointer-events-none" />
+      </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -253,8 +274,18 @@ export default function About() {
                   }`}
                 >
                   <div className={`flex-1 ${index % 2 === 0 ? 'md:pr-8' : 'md:pl-8'}`}>
-                    <Card className="p-6">
-                      <div className="flex items-center mb-3">
+                    <Card className="p-0 overflow-hidden">
+                      <div className="relative w-full h-40 md:h-56 mb-4">
+                        <Image
+                          src={item.image}
+                          alt={item.title}
+                          fill
+                          className="object-cover object-center w-full h-full"
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-primary/30 via-white/10 to-transparent" />
+                      </div>
+                      <div className="flex items-center mb-3 px-6">
                         <span className="text-2xl font-bold text-primary mr-4">
                           {item.year}
                         </span>
@@ -262,7 +293,7 @@ export default function About() {
                           {item.title}
                         </h4>
                       </div>
-                      <p className="text-gray-600 dark:text-gray-400">
+                      <p className="text-gray-600 dark:text-gray-400 px-6 pb-4">
                         {item.description}
                       </p>
                     </Card>

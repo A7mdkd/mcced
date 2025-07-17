@@ -4,6 +4,7 @@ import AboutMccedSection from '@/components/sections/AboutMccedSection';
 import ServicesSection from '@/components/sections/ServicesSection';
 import BannerSection from '@/components/sections/BannerSection';
 import FAQSection from '@/components/sections/FAQSection';
+import TrackingSection from '@/components/sections/TrackingSection';
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
           altText="MCCED Logistics Banner"
           textOverlay="Your Trusted Partner in Global Logistics"
         />
+        <TrackingSection />
         <FAQSection />
       </main>
     </>

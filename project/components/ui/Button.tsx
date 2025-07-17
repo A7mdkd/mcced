@@ -12,6 +12,7 @@ interface ButtonProps {
   onClick?: () => void;
   href?: string;
   disabled?: boolean;
+  type?: 'button' | 'submit' | 'reset';
 }
 
 export default function Button({
@@ -22,6 +23,7 @@ export default function Button({
   onClick,
   href,
   disabled = false,
+  type = 'button',
 }: ButtonProps) {
   const baseClasses = 'inline-flex items-center justify-center font-medium rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2';
   
@@ -71,6 +73,7 @@ export default function Button({
       onClick={onClick}
       disabled={disabled}
       className={classes}
+      type={type}
       {...motionProps}
     >
       {children}

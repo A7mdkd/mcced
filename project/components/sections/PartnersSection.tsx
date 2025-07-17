@@ -50,26 +50,10 @@ export default function PartnersSection() {
 
 
 
-  // سلايدر تلقائي أفقي
-  const sliderRef = useRef<HTMLDivElement>(null);
-  const [slide, setSlide] = useState(0);
-  const visibleCount = 6; // عدد الشعارات الظاهرة دفعة واحدة
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setSlide((prev) => (prev + 1) % partners.length);
-    }, 2200);
-    return () => clearInterval(interval);
-  }, [partners.length]);
-
-  // حساب الشعارات المعروضة
-  const getVisiblePartners = () => {
-    if (partners.length <= visibleCount) return partners;
-    const arr = [];
-    for (let i = 0; i < visibleCount; i++) {
-      arr.push(partners[(slide + i) % partners.length]);
-    }
-    return arr;
-  };
+  // شريط لوجوز متحرك (marquee)
+  const marqueeRef = useRef<HTMLDivElement>(null);
+  // تكرار الشعارات مرتين لتحقيق تأثير التكرار المستمر
+  const marqueePartners = [...partners, ...partners];
 
   return (
     <section className="py-20 bg-white dark:bg-gray-800">
@@ -94,38 +78,54 @@ export default function PartnersSection() {
 
         {/* سلايدر أفقي للشعارات */}
 
-        <div className="w-full flex justify-center items-center mb-20">
-          <div ref={sliderRef} className="flex gap-12 transition-all duration-700">
-            {getVisiblePartners().map((partner, idx) => (
-              <motion.div
-                key={partner.logo}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
-                className="bg-gray-50 dark:bg-gray-700 p-8 rounded-lg flex items-center justify-center shadow-md"
-                style={{ minWidth: 200, minHeight: 200 }}
+        <div className="w-full overflow-x-hidden mb-20">
+          <div
+            ref={marqueeRef}
+            className="flex gap-8 animate-marquee"
+            style={{ width: 'max-content' }}
+          >
+            {marqueePartners.map((partner, idx) => (
+              <div
+                key={partner.logo + idx}
+                className="bg-gray-50 dark:bg-gray-700 p-2 sm:p-4 md:p-8 lg:p-12 rounded-lg flex items-center justify-center shadow-md"
+                style={{ minWidth: 120, minHeight: 120, width: '32vw', height: '32vw', maxWidth: 220, maxHeight: 220 }}
               >
-                <div className="relative w-44 h-44">
+                <div className="relative w-24 h-24 sm:w-32 sm:h-32 md:w-44 md:h-44 lg:w-56 lg:h-56 logo-wrapper">
                   <Image
                     src={partner.logo}
                     alt="Partner logo"
                     fill
                     className="object-contain filter-logo-black"
-                    sizes="176px"
+                    sizes="(max-width: 640px) 64px, (max-width: 1024px) 128px, 176px"
                     priority={idx === 0}
+                    style={{ objectFit: 'contain', objectPosition: 'center' }}
                   />
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
-      <style>{`
-        .filter-logo-black {
-          filter: invert(0) brightness(0);
-        }
-        .dark .filter-logo-black {
-          filter: none;
-        }
-      `}</style>
+          <style>{`
+            @keyframes marquee {
+              0% { transform: translateX(0); }
+              100% { transform: translateX(-50%); }
+            }
+            .animate-marquee {
+              animation: marquee 32s linear infinite;
+            }
+            .filter-logo-black {
+              filter: invert(0) brightness(0);
+            }
+            .dark .filter-logo-black {
+              filter: none;
+            }
+            .logo-wrapper svg {
+              margin: 0 !important;
+              padding: 0 !important;
+              width: 100% !important;
+              height: 100% !important;
+              display: block;
+            }
+          `}</style>
         </div>
 
         {/* تم حذف قسم كن شريكًا */}

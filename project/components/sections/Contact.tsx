@@ -151,8 +151,15 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 bg-white dark:bg-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="relative py-20 bg-gradient-to-br from-primary/10 via-white to-cyan-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
+      {/* خلفية SVG زخرفية */}
+      <div className="absolute inset-0 pointer-events-none select-none opacity-20 blur-2xl z-0" aria-hidden>
+        <svg width="100%" height="100%" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="700" cy="100" r="120" fill="#06b6d4" fillOpacity="0.18" />
+          <circle cx="100" cy="500" r="180" fill="#6366f1" fillOpacity="0.13" />
+        </svg>
+      </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           ref={ref}
           className="text-center mb-16"
@@ -162,23 +169,28 @@ export default function Contact() {
         >
           <motion.span
             variants={itemVariants}
-            className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4"
+            className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4 tracking-widest"
           >
             Contact Us
           </motion.span>
-          
+          <div className="flex justify-center mb-4">
+            <div className="flex items-center gap-4">
+              <Mail className="w-10 h-10 text-primary" />
+              <Phone className="w-8 h-8 text-cyan-500" />
+              <MapPin className="w-8 h-8 text-indigo-500" />
+            </div>
+          </div>
           <motion.h2
             variants={itemVariants}
-            className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6"
+            className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 drop-shadow-lg"
           >
             Get in Touch with Our Experts
           </motion.h2>
-          
           <motion.p
             variants={itemVariants}
             className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto"
           >
-            Ready to streamline your logistics? Contact our team for personalized 
+            Ready to streamline your logistics? <span className="text-primary font-semibold">Contact our team</span> for personalized 
             solutions and expert guidance on your shipping needs.
           </motion.p>
         </motion.div>
@@ -191,7 +203,7 @@ export default function Contact() {
             initial="hidden"
             animate={inView ? 'visible' : 'hidden'}
           >
-            <Card className="p-8">
+            <Card className="p-8 bg-white/90 dark:bg-gray-800/90 shadow-xl border border-primary/10">
               <div className="flex items-center mb-6">
                 <MessageSquare className="w-6 h-6 text-primary mr-3" />
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
@@ -339,7 +351,7 @@ export default function Contact() {
             initial="hidden"
             animate={inView ? 'visible' : 'hidden'}
           >
-            <Card className="p-8 bg-primary text-white">
+            <Card className="p-8 bg-gradient-to-br from-primary to-cyan-600 text-white shadow-xl border-0">
               <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
               <div className="space-y-6">
                 {contactInfo.map((item, index) => (
@@ -372,6 +384,9 @@ export default function Contact() {
           animate={inView ? 'visible' : 'hidden'}
         >
           <div className="text-center mb-12">
+            <div className="flex justify-center mb-4">
+              <HeadphonesIcon className="w-12 h-12 text-primary" />
+            </div>
             <motion.span
               variants={itemVariants}
               className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-4"
@@ -399,7 +414,7 @@ export default function Contact() {
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow"
+                className="bg-white/90 dark:bg-gray-800/90 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow border border-primary/10"
               >
                 <div className="bg-primary/10 p-4 rounded-full w-16 h-16 flex items-center justify-center mb-4 mx-auto">
                   <option.icon className="w-8 h-8 text-primary" />
@@ -452,7 +467,7 @@ export default function Contact() {
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow"
+              className="bg-white/90 dark:bg-gray-800/90 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow border border-primary/10"
               >
                 <div className="flex items-center mb-4">
                   <MapPin className="w-5 h-5 text-primary mr-2" />
