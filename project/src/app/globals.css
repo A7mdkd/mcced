@@ -1,0 +1,212 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 200 20% 98%;
+    --foreground: 210 20% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 210 20% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 20% 15%;
+    --primary: 204 90% 50%;
+    --primary-foreground: 210 20% 98%;
+    --secondary: 210 20% 94%;
+    --secondary-foreground: 210 20% 15%;
+    --muted: 210 20% 94%;
+    --muted-foreground: 210 20% 45%;
+    --accent: 210 20% 88%;
+    --accent-foreground: 210 20% 15%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 210 20% 85%;
+    --input: 210 20% 88%;
+    --ring: 204 90% 50%;
+  }
+ 
+  .dark {
+    --background: 210 20% 10%;
+    --foreground: 0 0% 98%;
+    --card: 210 20% 12%;
+    --card-foreground: 0 0% 98%;
+    --popover: 210 20% 10%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 204 90% 50%;
+    --primary-foreground: 210 20% 98%;
+    --secondary: 210 20% 18%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 210 20% 18%;
+    --muted-foreground: 210 20% 60%;
+    --accent: 210 20% 24%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 210 20% 25%;
+    --input: 210 20% 25%;
+    --ring: 204 90% 50%;
+  }
+}
+ 
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+    .text-shadow {
+        text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+    }
+    .text-shadow-lg {
+        text-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    }
+    
+    .kenburns-zoom-out {
+      animation: kenburns-zoom-out 7s ease-out forwards;
+    }
+    .fade-in-blur {
+        animation: fade-in-blur 2s ease-out forwards;
+    }
+    .slide-in-right {
+        animation: slide-in-right 7s ease-out forwards;
+    }
+    .zoom-in-out {
+        animation: zoom-in-out 7s ease-in-out forwards;
+    }
+    .cube-rotate {
+      animation: cube-rotate 2s ease-in-out forwards;
+    }
+    .pixel-dissolve {
+      animation: pixel-dissolve 2s steps(8, end) forwards;
+    }
+    .animate-fade-in-up {
+      animation: fade-in-up 0.8s ease-out forwards;
+    }
+
+    .typing-cursor::after {
+        content: '|';
+        animation: blink 1s step-end infinite;
+    }
+    
+    .slide-in-left {
+        animation: slide-in-left 0.5s ease-out forwards;
+    }
+
+    .slide-out-right {
+        animation: slide-out-right 0.5s ease-in forwards;
+    }
+
+    @keyframes slide-in-left {
+        from {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+    
+    @keyframes slide-out-right {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+    }
+
+    @keyframes blink {
+        from, to {
+            color: transparent;
+        }
+        50% {
+            color: inherit;
+        }
+    }
+
+    @keyframes fade-in-up {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes kenburns-zoom-out {
+      from { transform: scale(1.1); }
+      to { transform: scale(1); }
+    }
+    
+    @keyframes fade-in-blur {
+        from {
+            opacity: 0;
+            filter: blur(8px);
+            transform: scale(1.05);
+        }
+        to {
+            opacity: 1;
+            filter: blur(0);
+            transform: scale(1);
+        }
+    }
+    @keyframes slide-in-right {
+        from { transform: translateX(50px) scale(1.2); }
+        to { transform: translateX(0) scale(1); }
+    }
+    @keyframes zoom-in-out {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+        100% { transform: scale(1); }
+    }
+    @keyframes cube-rotate {
+      from {
+        transform: rotateY(90deg) scale(0.5);
+        opacity: 0;
+      }
+      to {
+        transform: rotateY(0deg) scale(1);
+        opacity: 1;
+      }
+    }
+    @keyframes pixel-dissolve {
+      0% {
+        clip-path: inset(0 100% 0 0);
+      }
+      12.5% {
+        clip-path: inset(0 87.5% 0 0);
+      }
+      25% {
+        clip-path: inset(0 75% 0 0);
+      }
+      37.5% {
+        clip-path: inset(0 62.5% 0 0);
+      }
+      50% {
+        clip-path: inset(0 50% 0 0);
+      }
+      62.5% {
+        clip-path: inset(0 37.5% 0 0);
+      }
+      75% {
+        clip-path: inset(0 25% 0 0);
+      }
+      87.5% {
+        clip-path: inset(0 12.5% 0 0);
+      }
+      100% {
+        clip-path: inset(0 0 0 0);
+      }
+    }
+}
+
+    
